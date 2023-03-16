@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <base-checkbox v-model="loginValue"></base-checkbox>
+    {{loginValue}}
+  </div>
+
+</body>
+
+<script>
+  Vue.component('base-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      checked: Boolean
+    },
+    template: `
+      <input
+        type="checkbox"
+        :checked="checked"
+        @chenge ="$emit('change', $event.target.checked)"
+        > 
+    `
+  })
+
+  // 要放在自定义组件定义的后面，否则自定义组件未定义
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        loginValue: false
+      }
+    }
+  })
+</script>
+
+</html>

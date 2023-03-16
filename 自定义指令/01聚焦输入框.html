@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义指令-聚焦输入框</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" placeholder="自定义指令——聚焦输入框" v-focus>
+  </div>
+</body>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    directives: {
+      focus: {
+        // 指定的定义
+        inserted: function (el) {
+          el.focus()
+        }
+      }
+    }
+  })
+</script>
+
+</html>

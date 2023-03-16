@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+  <style>
+    .list-item {
+      transition: all 1s;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    /* .list-enter-active,
+    .list-leave-active {
+      transition: all 1s;
+    } */
+
+    .list-enter,
+    .list-leave-to {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .list-leave-active {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="list-demo" class="demo">
+    <button @click="shuffle">shuffle</button>
+    <button @click="addOne">add</button>
+    <button @click="removeOne">remove</button>
+    <transition-group name="list" tag="p">
+      <span v-for="item in list" :key="item" class="list-item">
+        {{item}}
+      </span>
+    </transition-group>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#list-demo",
+      data: {
+        list: [1, 2, 3, 4, 5, 6, 7],
+        nextNum: 8
+      },
+      methods: {
+        // splice:原地填加新的元素 或者 删除 或者替换现有元素 
+        // spice(start, deleteCount, item) 返回值是一个由被删除元素组成的数组，没有删除元素则返回一个空数组
+        addOne() {
+          this.list.splice(this.randomIndex(), 0, this.nextNum++)
+        },
+        removeOne() {
+          this.list.splice(this.randomIndex(), 1)
+        },
+        // 随机获取数组任一元素的下标
+        randomIndex() {
+          return Math.floor(Math.random() * this.list.length)
+        },
+        shuffle() {
+          this.list = _.shuffle(this.list)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

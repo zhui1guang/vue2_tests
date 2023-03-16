@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" ref="testRef">{{message}}</div>
+</body>
+<script>
+  var app = new Vue({
+    el: '#app',
+    //data当做一个函数return会一个对象，能够避免数据污染。
+    data() {
+      return {
+        message: '$nextTick'
+      }
+    },
+    created() {
+      //undefined——在这个钩子中，真实dom还没有产生，因此没办法获得dom实例
+      console.log(this.$refs.testRef);
+      this.$nextTick(function () {
+        //$nextTick
+        console.log(this.$refs.testRef.innerText);
+      })
+    }
+
+  })
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <style>
+    /* 过渡进入时 触发过渡的元素 持续时间 延迟曲线函数  */
+    .slide-fade-enter-active {
+      /* 所有元素 all */
+      transition: all 1s ease;
+    }
+
+    .slide-fade-leave-active {
+      transition: all 2s;
+    }
+
+    /* 进入过渡之前或离开的状态 */
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <button @click="show = !show">Toggle render</button>
+    <transition name="slide-fade">
+      <p v-if="show">hellp</p>
+    </transition>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#demo",
+      data: {
+        show: true
+      }
+    })
+  </script>
+</body>
+
+</html>

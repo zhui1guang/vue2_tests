@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <script>
+    var myMixin = {
+      created() {
+        this.foo()
+        this.conflicting()
+      },
+      methods: {
+        foo: function () {
+          console.log('mixins foo')
+        },
+        conflicting: function () {
+          console.log('mixins conflicting')
+        }
+      }
+    }
+    /* 
+    输出：mixins foo --> this.foo()
+    SPA conflicting --->mixins 里面的this.conflicting() 同键对象冲突，以组件的键值对优先
+    SPA bar --> this.bar()
+    SPA conflicting --> 组件里的this.conflicting
+    */
+    var vm = new Vue({
+      mixins: [myMixin],
+      created() {
+        this.bar()
+        this.conflicting()
+      },
+      methods: {
+        bar: function () {
+          console.log('SPA bar')
+        },
+        conflicting: function () {
+          console.log('SPA conflicting')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

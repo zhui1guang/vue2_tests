@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.prevent阻止默认事件</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>.prevent阻止默认事件：event.preventDefault()</p>
+    <a href="http://www.w3school.com.cn" @click.prevent="clickEvent(1)">不跳转的链接</a>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    methods: {
+      clickEvent(num) {
+        console.log('触发输出' + num)
+      }
+    }
+  })
+</script>
+
+</html>

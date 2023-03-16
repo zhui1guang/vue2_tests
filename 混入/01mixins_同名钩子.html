@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <script>
+    /* 钩子函数同名以数组的形式渲染，混入的钩子先在前 */
+    var myMixin = {
+      created() {
+        console.log('混入的created')
+      }
+    }
+
+    new Vue({
+      mixins: [myMixin],
+      created() {
+        console.log('组件的created')
+      }
+    })
+  </script>
+</body>
+
+</html>

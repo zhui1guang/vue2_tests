@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <style>
+    /* 进入时动画效果 */
+    .fade-animation-enter-active {
+      animation: fade-in 1s;
+    }
+
+    /* 出去时动画效果 */
+    .fade-animation-leave-active {
+      animation: fade-in 1s reverse;
+    }
+
+    /* 定义动画 */
+    @keyframes fade-in {
+      0% {
+        transform: scale(0);
+      }
+
+      50% {
+        transform: scale(1.5)
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="fade-animation">
+      <p v-if="show">与过渡比，在动画中v-enter在节点插入DOM后不会立即删除，而是在animationed事件触发时删除
+
+      </p>
+    </transition>
+
+  </div>
+
+  <script>
+    new Vue({
+      el: "#demo",
+      data: {
+        show: true
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" ref="testRef" @click="handleClick">{{message}}</div>
+</body>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        message: '$nextTick'
+      }
+    },
+    methods: {
+      handleClick() {
+        this.message = 'hello';
+        // 输出的是初始的数据
+        console.log(this.$refs.testRef.innerText);//$nextTick
+        this.$nextTick(function () {
+          // 输出的是更新后的数据
+          console.log(this.$refs.testRef.innerText);//hello
+        })
+      }
+    }
+  })
+</script>
+
+</html>

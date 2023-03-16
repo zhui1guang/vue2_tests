@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.sync“双向绑定”prop</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+</body>
+<script>
+  Vue.component('child', {
+    props: ['msg'],
+    template: `
+    <div>
+      <hr>
+      我是子组件
+      <button @click="$emit('update:msg',msg+1)">子组件点击{{msg}}</button>
+    </div>
+  `
+  })
+
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        n: 100
+      }
+    },
+    template: `
+    <div>
+      父组件n:{{n}}
+    
+      <child :msg.sync='n' ></child>
+      </div>
+    `
+  })
+</script>
+
+</html>

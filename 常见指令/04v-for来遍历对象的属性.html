@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <ul id="example">
+    <!-- v-for遍历一个对象，第一个参数是键值， 第二个参数是键名，第三个参数是索引 -->
+    <li v-for="(item, keyName, index) in obj">
+      {{keyName}} : {{item}} - {{index}}
+    </li>
+  </ul>
+  <script>
+    var vm = new Vue({
+      el: '#example',
+      data: {
+        obj: {
+          name: 'chennuo',
+          age: '21',
+          hobby: 'music'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

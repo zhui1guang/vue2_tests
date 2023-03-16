@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <script>
+    var myMixin = {
+      data() {
+        return {
+          msg: 'mixins msg',
+          foo: 'mixins foo'
+        }
+      }
+    }
+
+    new Vue({
+      // 引入混入
+      mixins: [myMixin],
+      created() {
+        // 组件和混入同名时进行递归合并，并以组件数据优先
+        this.logdata()
+        /*
+         bar:'def'
+         foo:'mixins foo',
+         msg:'vm msg'
+         */
+      },
+      data() {
+        return {
+          msg: 'vm msg',
+          bar: 'def'
+        }
+      },
+      methods: {
+        logdata() {
+          console.log(this.$data)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

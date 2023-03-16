@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <style>
+    .out-box {
+      width: 300px;
+      height: 300px;
+      background-color: aqua;
+    }
+
+    .in-box {
+      width: 100px;
+      height: 100px;
+      background-color: azure;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    .self修饰out-box的单击事件，作用在于，只有点击out-box才会触发其自身的click事件。
+    因为在没有修饰的click中，如果点击in-box事件会冒泡到out-box触发clickEvent(2)
+    <p>点击in-box,输出：触发输出1</p>
+    <div class="out-box" @click.self="clickEvent(2)">
+      触发输出2
+
+      <div class="in-box" @click="clickEvent(1)">触发输出1</div>
+
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    methods: {
+      clickEvent(num) {
+        console.log('触发输出' + num);
+      }
+    }
+  })
+</script>
+
+</html>

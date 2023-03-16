@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建动态自定义指令：将固定定位的元素固定在 顶部/左边 页面上</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="baseexample">
+    <p>Scroll down the page。Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio vel
+      mollitia nesciunt eius quaerat quidem, temporibus nulla dignissimos eos? Aspernatur assumenda rerum totam
+      adipisci. Id impedit animi nostrum esse exercitationem reiciendis magni officiis excepturi et fugiat! Labore esse
+      vitae eveniet vel, officia impedit praesentium, soluta delectus nihil nostrum ratione dolores, itaque sed dolorum
+      ea porro tempora. Eius corrupti cumque delectus ullam nihil aut expedita qui aliquam. Atque, eaque debitis! Quasi
+      dolorem labore ipsam corporis delectus, distinctio optio perferendis assumenda doloribus iste adipisci vitae
+      cupiditate? Sit exercitationem non quisquam vero voluptates, sunt dignissimos quos at cupiditate perspiciatis
+      doloribus quam, ex officiis obcaecati dolore tempore eligendi suscipit culpa numquam ut ea eveniet alias
+      explicabo. Neque voluptatem omnis repudiandae quam ipsum dolorem, nostrum sit. Neque eius commodi iure accusamus
+      accusantium blanditiis deserunt quis nam et cupiditate dolore fugit sit consectetur enim facere, facilis omnis?
+      Beatae eaque aliquid dolorum illo quasi? Suscipit quis doloremque provident praesentium cumque, blanditiis aperiam
+      ipsam dolor voluptates debitis? Obcaecati, alias optio sunt fuga, mollitia dolores neque ab unde architecto magnam
+      adipisci necessitatibus consequuntur error? Voluptatibus quisquam inventore dicta ad distinctio sint minima velit
+      perferendis, explicabo nostrum debitis iusto nihil laboriosam necessitatibus praesentium ipsa doloremque, iure
+      voluptas iste quasi temporibus eum error. Ipsam placeat sed quis facere aliquam, deserunt dolores dolorum sequi
+      minima maiores totam id vero veniam beatae provident! Animi esse temporibus doloremque doloribus iusto dolorum,
+      alias earum architecto deleniti similique voluptatibus, voluptate error sint quidem ipsam? Magnam ea ratione,
+      repellendus obcaecati explicabo iure aliquam adipisci, ipsa amet deserunt corrupti? Nobis, repellendus reiciendis?
+      Et recusandae vitae molestias unde molestiae necessitatibus ducimus nihil. Iusto quae, eius inventore eaque quas
+      temporibus provident distinctio eum facilis quos, modi ipsam animi, ratione laborum mollitia saepe minima hic!
+      Asperiores consequatur, labore molestias totam vero repellendus! Numquam sint alias nisi accusamus a minus fugiat
+      doloribus exercitationem adipisci corrupti. Nisi quo provident consequatur cupiditate maxime, earum velit aliquam
+      eveniet inventore culpa. Quaerat aliquid qui recusandae ipsum consectetur provident neque, facere optio nihil
+      voluptas sapiente blanditiis impedit et non reprehenderit, sequi error velit aliquam obcaecati cumque molestias
+      ipsam tempore distinctio? Eos aliquam voluptas libero animi eius placeat quia! Inventore, accusamus! Omnis modi
+      laboriosam magni necessitatibus obcaecati reiciendis neque accusantium quibusdam aliquam praesentium animi ex
+      libero tempore voluptates commodi exercitationem nesciunt perspiciatis autem, ducimus id. Optio quasi suscipit ut
+      tempora deleniti, quas dignissimos ipsa voluptatibus commodi doloribus odit accusamus ad blanditiis cum delectus,
+      modi recusandae. Ipsam, rem commodi deserunt minus temporibus fuga officia nam fugit ad doloremque possimus illum
+      quos molestias. Vero maiores omnis iusto quo atque facilis explicabo fugit magnam exercitationem, assumenda
+      voluptate culpa aliquid ullam rem, debitis impedit quaerat illo voluptates provident velit saepe laboriosam! Sint
+      eaque commodi similique voluptatum tempora voluptate, possimus necessitatibus non quisquam ratione, ipsa dolorum
+      recusandae natus et animi illum eum explicabo repellat. Iure magnam, consequuntur eum eos fugiat excepturi dolore
+      cupiditate vel repellat laudantium quas pariatur natus, architecto aliquam autem suscipit reprehenderit saepe!
+      Quos necessitatibus, hic porro velit maxime accusamus, officia fuga quo vitae similique minus repellat non
+      provident nam! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut maxime nam itaque sed veritatis ab
+      voluptas sequi incidunt quaerat laboriosam dolorem pariatur esse consequuntur autem, maiores, est fugiat assumenda
+      veniam nulla saepe architecto. Quos, officia ullam! Delectus dolores, magni hic veniam unde nulla accusamus
+      officia nam, cupiditate vitae qui quod ut expedita voluptatibus voluptates tempore voluptas, aliquid impedit eum
+      deleniti consequatur quos aliquam itaque. Repellendus sequi dolor ea impedit, velit ratione libero laudantium
+      accusamus ut cumque id provident laboriosam alias. Qui, laborum. Ad laudantium, nostrum eos ratione dolor tempora
+      delectus voluptatum, maiores deserunt quidem laboriosam est magnam nemo cumque vitae!</p>
+    <p v-pin:[direction]="200">Stick me 200px from the top of the page</p>
+  </div>
+</body>
+
+<script>
+  // 动态自定义指令：指令的参数是可变的
+  Vue.directive('pin', {
+    bind: function (el, binding, vnode) {
+      el.style.position = 'fixed';
+      var s = (binding.arg == 'left' ? 'left' : 'top');
+      el.style[s] = binding.value + 'px';
+    }
+  })
+
+  new Vue({
+    el: '#baseexample',
+    data: function () {
+      return {
+        direction: 'left'
+      }
+    }
+  })
+</script>
+
+</html>

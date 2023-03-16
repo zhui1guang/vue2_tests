@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.native将原生事件绑定到自定义组件中</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <child @click="clickEvent(1)"></child>
+    <child @click.native="clickEvent(1)"></child>
+  </div>
+</body>
+
+<script>
+  Vue.component('child', {
+    template: `
+    <div>我是一个自定义组件</div>
+    `,
+
+  })
+  new Vue({
+    el: '#app',
+    methods: {
+      clickEvent(value) {
+        console.log('触发输出:' + value)
+      }
+    },
+  })
+</script>
+
+</html>
