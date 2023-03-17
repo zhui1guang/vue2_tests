@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-if的key使元素是一个完全独立，而不是尽可能地去复用</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username">
+      <input placeholder="Enter your username" key="input-username">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address">
+      <input placeholder="Enter your email address" key="input-email">
+    </template>
+    <button @click="toggleLogin">Toggle login type</button>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        loginType: 'username'
+      }
+    },
+    methods: {
+      toggleLogin() {
+        if (this.loginType === 'username') {
+          this.loginType = 'email';
+        } else {
+          this.loginType = 'username';
+        }
+      }
+    }
+  })
+</script>
+
+</html>

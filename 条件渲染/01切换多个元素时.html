@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-if/v-else</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 当要用v-if切换多个元素时，这些元素外层可以用一个<template>标签包裹，真正渲染时不渲染<template> -->
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+
+    <div v-if="Math.random()>0.5">
+      Now you see me
+    </div>
+    <div v-else>
+      Now you don't
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        ok: true
+      }
+    }
+  })
+</script>
+
+</html>
