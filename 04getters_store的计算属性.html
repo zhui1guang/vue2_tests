@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex@3.0.1"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{doneTodos}}
+  </div>
+</body>
+<script>
+  const store = new Vuex.Store({
+    state: {
+      todos: [
+        { id: 1, text: 'id1...', done: true },
+        { id: 2, text: 'id2...', done: false }
+      ]
+    },
+    getters: {
+      doneTodos: state => {
+        // 过滤出已经完成的了
+        return state.todos.filter(todo => todo.done);
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app',
+    store,
+    computed: {
+      ...Vuex.mapGetters([
+        'doneTodos'
+      ])
+    }
+  })
+</script>
+
+</html>
